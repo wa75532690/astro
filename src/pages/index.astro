@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+
+//DBから取得してきた情報（select文）
+const blogs = [
+	{"title":"ブログ1","body":"markdownからSSGで記事を作る","href":"./posts/blog1/"},
+	{"title":"ブログ2","body":"markdownからSSGで記事を作る","href":"./posts/blog2/"},
+	{"title":"ブログ3","body":"markdownからSSGで記事を作る","href":"./posts/blog3/"},
+];
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<h2>SSRでDBからデータを持ってきたつもりでページを作成する</h2>
+		<div class="blogs">
+			{
+			blogs.map((info)=>(
+				<Card title={info.title} body={info.body} href={info.href} />
+			))
+			}
+		</div>
+
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+	.blogs{
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+</style>

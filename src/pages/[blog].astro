@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+export function getStaticPaths() {
+  const blogids = ["blog1", "blog2", "blog3"];
+  return blogids.map((blogid) => ({
+    params: { blog: blogid },
+  }));
+}
+const { blog } = Astro.params;
+---
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <h2>Astroブログページ({blog})</h2>
+  </main>
+</Layout>
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+</style>
